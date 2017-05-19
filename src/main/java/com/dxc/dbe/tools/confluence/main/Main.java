@@ -28,7 +28,7 @@ public class Main {
 			System.out.println("Your Command is not corrent, refer to the following usage.");
 			Utils.usage();
 		} else if (args[0].equalsIgnoreCase("checklink")) {
-			
+
 			log.info("Checking links starts at " + Utils.getCurrentTime());
 
 			Utils.getCredential(args[1], args[2]);
@@ -43,15 +43,15 @@ public class Main {
 			clinkService.checkLink(Constants.ACCELERATOR_LIBRARY_PAGEID);
 			fm.pw.close();
 			log.info("Checking links ends at " + Utils.getCurrentTime());
-			
+
 		} else if (args[0].equalsIgnoreCase("checklabel")) {
-			
+
 			log.info("Checking labels starts at " + Utils.getCurrentTime());
 
 			Utils.getCredential(args[1], args[2]);
 			log.info("Confluence Account is " + args[1] + ", password is " + args[2].charAt(0) + "......"
 					+ args[2].charAt(args[2].length() - 1));
-			
+
 			log.info("Generating report ... ");
 			FileManager fm = new FileManager(new PrintWriter(new File("label-report.csv")));
 			fm.insertRow("Page\tPage Address\n");
@@ -59,8 +59,11 @@ public class Main {
 			labelService.checkLabel(Constants.ACCELERATOR_DRAFT_PAGEID);
 			labelService.checkLabel(Constants.ACCELERATOR_LIBRARY_PAGEID);
 			fm.pw.close();
-			
+
 			log.info("Checking labels ends at " + Utils.getCurrentTime());
+		} else {
+			System.out.println("Your Command is not corrent, refer to the following usage.");
+			Utils.usage();
 		}
 
 	}

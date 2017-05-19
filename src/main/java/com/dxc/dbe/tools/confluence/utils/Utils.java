@@ -35,7 +35,11 @@ public class Utils {
 		System.out.println("Usage: java -jar dbe-confluence-tool.jar <services> [args]");
 		System.out.println("where services include:");
 		System.out.println("\thelp          -List the usage.");
-		System.out.println("\tchecklist     -Validate all href links in confluence and generate a CSV report.");
+		System.out.println("\tchecklink     -Validate all href links in confluence and generate a CSV report.");
+		System.out.println("\t  -args:");
+		System.out.println("\t  username\t\t-Your Confluence username");
+		System.out.println("\t  password\t\t-Your Confluence password");
+		System.out.println("\tchecklabel    -Find out all the pages without labels and generate a CSV report.");
 		System.out.println("\t  -args:");
 		System.out.println("\t  username\t\t-Your Confluence username");
 		System.out.println("\t  password\t\t-Your Confluence password");
