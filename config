@@ -1,0 +1,18 @@
+#check link service configuration
+link.service.baseurl=https://dbe4sap.atlassian.net
+link.service.pageid=11046763
+
+
+#check label service configuration
+label.service.baseurl=https://dbe4sap.atlassian.net
+label.service.pageid=11046763
+
+#compare page service configuration
+compare.page.origin.baseurl=https://dbe4sap.atlassian.net
+compare.page.origin.pageid=11046763
+compare.page.target.baseurl=https://dbe4sap.atlassian.net
+compare.page.target.pageid=11046763
+
+#check comment service configuration
+comment.service.baseurl=https://dbe4sap.atlassian.net
+comment.service.pageid=11046763

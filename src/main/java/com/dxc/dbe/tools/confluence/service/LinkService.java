@@ -11,7 +11,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.dxc.dbe.tools.confluence.exception.CustomException;
-import com.dxc.dbe.tools.confluence.utils.Constants;
 import com.dxc.dbe.tools.confluence.utils.FileManager;
 import com.dxc.dbe.tools.confluence.utils.HttpManager;
 import com.dxc.dbe.tools.confluence.utils.Utils;
@@ -26,9 +25,9 @@ public class LinkService {
 
 	// private static HttpClient client = HttpClientBuilder.create().build();
 
-	public void checkLink(String id) throws Exception {
+	public void checkLink(String base_url,String id) throws Exception {
 
-		String descendants_url = Constants.BASE_URL + "/wiki/rest/api/content/" + id
+		String descendants_url = base_url + "/wiki/rest/api/content/" + id
 				+ "/descendant/page?limit=99999&start=0";
 		String page_url;
 		HttpManager hm = new HttpManager();
@@ -73,8 +72,8 @@ public class LinkService {
 
 				if (Utils.isExceptionUrl(url, link_text)) {
 					continue;
-				} else if (url.startsWith("/wiki/display/")) {
-					url = Constants.BASE_URL + linkElement.attr("href");
+				} else if (url.startsWith("/wiki/display/") || url.startsWith("/wiki/pages/")) {
+					url = base_url + linkElement.attr("href");
 				}
 
 				try {

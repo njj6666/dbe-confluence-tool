@@ -2,8 +2,10 @@ package com.dxc.dbe.tools.confluence.utils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
+import java.util.List;
 
 public class Utils {
 	public static String authorization;
@@ -22,8 +24,10 @@ public class Utils {
 
 	public static boolean isExceptionUrl(String url, String link_text) {
 		boolean result = false;
-		if (url.startsWith("/wiki/display/~") || url.startsWith("/wiki/label/")
-				|| url.startsWith("/wiki/download/attachments/") || Utils.isValidEmailAddress(url)) {
+		if (url.startsWith("/wiki/display/~") || url.startsWith("/wiki/label/") || url.startsWith("#")
+				|| url.startsWith("/wiki/download/attachments/") || Utils.isValidEmailAddress(url)
+				|| url.endsWith(".msi") || url.endsWith(".exe")
+				|| url.contains("android.com") || url.contains("google.com")) {
 			result = true;
 		} else if (link_text.equals("Expand all") || link_text.equals("Collapse all")) {
 			result = true;
@@ -43,12 +47,26 @@ public class Utils {
 		System.out.println("\t  -args:");
 		System.out.println("\t  username\t\t-Your Confluence username");
 		System.out.println("\t  password\t\t-Your Confluence password");
+		System.out.println("\tcomparepage     -compare pages between two parent pages, list which pages are missing, which are redudant");
+		System.out.println("\t  -args:");
+		System.out.println("\t  username\t\t-Your Confluence username");
+		System.out.println("\t  password\t\t-Your Confluence password");
 		System.out.println("See https://atcswa-cr-atlassian.ecs-core.ssn.hp.com/confluence/display/EASE/DBE+Confluence+Tool for more details.");
 	}
 
 	public static void getCredential(String username, String password) {
 		String src = username + ":" + password;
 		Utils.authorization = "Basic "+Base64.getEncoder().encodeToString(src.getBytes());
+	}
+	
+	public static List<String> minus(List<String> list1, List<String> list2){
+		List<String> results = new ArrayList<String>();
+		for(String i:list1){
+			if(!list2.contains(i)){
+				results.add(i);
+			}
+		}
+		return results;
 	}
 
 }
