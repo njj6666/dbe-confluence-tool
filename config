@@ -1,6 +1,6 @@
 #check link service configuration
-link.service.baseurl=https://dbe4sap.atlassian.net
-link.service.pageid=11046763
+#link.service.baseurl=https://dbe4sap.atlassian.net
+#link.service.pageid=11046763
 
 
 #check label service configuration

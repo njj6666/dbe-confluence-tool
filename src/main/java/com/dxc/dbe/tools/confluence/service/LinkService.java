@@ -54,7 +54,7 @@ public class LinkService {
 
 		for (int i = 0; i < idArray.size(); i++) {
 			pageId = idArray.get(i);
-			page_url = "https://dbe4sap.atlassian.net/wiki/rest/api/content/" + pageId + "?expand=body.view";
+			page_url = base_url+"/wiki/rest/api/content/" + pageId + "?expand=body.view";
 			String content_json = hm.doSSLGet(page_url);
 			obj = new JSONObject(content_json);
 			String content = obj.getJSONObject("body").getJSONObject("view").getString("value");

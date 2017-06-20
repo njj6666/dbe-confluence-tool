@@ -44,7 +44,7 @@ public class Main {
 			fm.insertRow("Status\tMessage\tAddress\tLinkText\tPage\n");
 			LinkService clinkService = new LinkService(fm);
 			// clinkService.checkLink(Constants.ACCELERATOR_DRAFT_PAGEID);
-			clinkService.checkLink(config.getProperty("label.service.baseurl"),
+			clinkService.checkLink(config.getProperty("link.service.baseurl"),
 					config.getProperty("link.service.pageid"));
 			fm.pw.close();
 			log.info("Checking links ends at " + Utils.getCurrentTime());
@@ -68,12 +68,11 @@ public class Main {
 
 			log.info("Checking labels ends at " + Utils.getCurrentTime());
 		} else if (args[0].equalsIgnoreCase(Constants.COMPARE_PAGE_SERVICE)) {
-			Utils.getCredential(args[1], args[2]);
 			CountService countService = new CountService();
-			List<String> list1 = countService.countPage(config.getProperty("compare.page.origin.baseurl"),
-					config.getProperty("compare.page.origin.pageid"));
-			List<String> list2 = countService.countPage(config.getProperty("compare.page.target.baseurl"),
-					config.getProperty("compare.page.target.pageid"));
+			List<String> list1 = countService.comparePage(config.getProperty("compare.page.origin.baseurl"),
+					config.getProperty("compare.page.origin.pageid"),args[1], args[2]);
+			List<String> list2 = countService.comparePage(config.getProperty("compare.page.target.baseurl"),
+					config.getProperty("compare.page.target.pageid"),args[3], args[4]);
 			List<String> result1 = Utils.minus(list1, list2);
 			List<String> result2 = Utils.minus(list2, list1);
 

@@ -8,16 +8,19 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.dxc.dbe.tools.confluence.utils.HttpManager;
+import com.dxc.dbe.tools.confluence.utils.Utils;
 
 public class CountService {
 
 	static Logger log = Logger.getLogger(CountService.class.getName());
 
-	public List<String> countPage(String base_url, String id) throws Exception {
+	public List<String> comparePage(String base_url, String id, String username, String password) throws Exception {
 
 		String descendants_url = base_url + "/wiki/rest/api/content/" + id + "/descendant/page?limit=99999&start=0";
 
 		HttpManager hm = new HttpManager();
+		
+		Utils.getCredential(username, password);
 
 		String result_json = hm.doSSLGet(descendants_url);
 
